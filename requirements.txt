@@ -22,11 +22,6 @@ scikit_image==0.19.2
 inflect
 tqdm
 plotly
-pyLDAvis
-pickle
-time
-sys
-lightgbm
 docx2txt==0.8
 Pillow
 scikit-learn
