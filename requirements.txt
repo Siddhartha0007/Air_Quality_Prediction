@@ -20,7 +20,6 @@ xgboost==1.6.1
 protobuf~=3.19.0
 scikit_image==0.19.2
 docx2txt
-PIL
 collections
 inflect
 os
