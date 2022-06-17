@@ -1,0 +1,364 @@
+imports
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+File import
+data = pd.read_csv("../input/airpollutantsample/AirQuality.csv")
+data.head(10)
+Country	State	city	place	lastupdate	Avg	Max	Min	Pollutants
+0	India	Andhra_Pradesh	Amaravati	Secretariat, Amaravati - APPCB	21-12-2018 03:00:00	70.0	108.0	42.0	PM2.5
+1	India	Andhra_Pradesh	Amaravati	Secretariat, Amaravati - APPCB	21-12-2018 03:00:00	76.0	102.0	43.0	PM10
+2	India	Andhra_Pradesh	Amaravati	Secretariat, Amaravati - APPCB	21-12-2018 03:00:00	73.0	118.0	46.0	NO2
+3	India	Andhra_Pradesh	Amaravati	Secretariat, Amaravati - APPCB	21-12-2018 03:00:00	5.0	6.0	4.0	NH3
+4	India	Andhra_Pradesh	Amaravati	Secretariat, Amaravati - APPCB	21-12-2018 03:00:00	41.0	109.0	2.0	SO2
+5	India	Andhra_Pradesh	Amaravati	Secretariat, Amaravati - APPCB	21-12-2018 03:00:00	44.0	102.0	18.0	CO
+6	India	Andhra_Pradesh	Amaravati	Secretariat, Amaravati - APPCB	21-12-2018 03:00:00	29.0	35.0	12.0	OZONE
+7	India	Andhra_Pradesh	Rajamahendravaram	Anand Kala Kshetram, Rajamahendravaram - APPCB	21-12-2018 03:00:00	NaN	NaN	NaN	PM2.5
+8	India	Andhra_Pradesh	Rajamahendravaram	Anand Kala Kshetram, Rajamahendravaram - APPCB	21-12-2018 03:00:00	NaN	NaN	NaN	PM10
+9	India	Andhra_Pradesh	Rajamahendravaram	Anand Kala Kshetram, Rajamahendravaram - APPCB	21-12-2018 03:00:00	NaN	NaN	NaN	NO2
+del data['lastupdate']
+data.head()
+Country	State	city	place	Avg	Max	Min	Pollutants
+0	India	Andhra_Pradesh	Amaravati	Secretariat, Amaravati - APPCB	70.0	108.0	42.0	PM2.5
+1	India	Andhra_Pradesh	Amaravati	Secretariat, Amaravati - APPCB	76.0	102.0	43.0	PM10
+2	India	Andhra_Pradesh	Amaravati	Secretariat, Amaravati - APPCB	73.0	118.0	46.0	NO2
+3	India	Andhra_Pradesh	Amaravati	Secretariat, Amaravati - APPCB	5.0	6.0	4.0	NH3
+4	India	Andhra_Pradesh	Amaravati	Secretariat, Amaravati - APPCB	41.0	109.0	2.0	SO2
+Plotting avg,min and max pollution
+plt.plot(data['Avg'])
+plt.xlabel('cities')
+plt.ylabel('amount')
+plt.title('Average Pollution Data')
+Text(0.5, 1.0, 'Average Pollution Data')
+
+plt.plot(data['Max'])
+plt.xlabel('cities')
+plt.ylabel('amount')
+plt.title('Maximum Pollution Data')
+Text(0.5, 1.0, 'Maximum Pollution Data')
+
+plt.plot(data['Min'])
+plt.xlabel('cities')
+plt.ylabel('amount')
+plt.title('Minimum Pollution Data')
+Text(0.5, 1.0, 'Minimum Pollution Data')
+
+Checking which State have most Pollution
+plt.figure(figsize=(20,10), dpi = 80)
+sns.countplot(x='State',data=data)
+plt.xlabel('State')
+plt.tight_layout()
+
+Conclusion
+We got that Delhi is Most Polluted and Gujrat and Jharkhand are least polluted
+Plotting Min,Max and Avg Pollution (Pollutant wise)
+data_p1=data[data.Pollutants=='PM2.5']
+data_p1[['Max','Avg','Min']].plot()
+plt.xlabel('cities')
+plt.ylabel('amount')
+plt.title('PM2.5')
+Text(0.5, 1.0, 'PM2.5')
+
+data_p2=data[data.Pollutants=='PM10']
+data_p2[['Max','Avg','Min']].plot()
+plt.xlabel('cities')
+plt.ylabel('amount')
+plt.title('PM10')
+Text(0.5, 1.0, 'PM10')
+
+data_p3=data[data.Pollutants=='NO2']
+data_p3[['Max','Avg','Min']].plot()
+plt.xlabel('cities')
+plt.ylabel('amount')
+plt.title('NO2')
+Text(0.5, 1.0, 'NO2')
+
+data_p4=data[data.Pollutants=='NH3']
+data_p4[['Max','Avg','Min']].plot()
+plt.xlabel('cities')
+plt.ylabel('amount')
+plt.title('NH3')
+Text(0.5, 1.0, 'NH3')
+
+data_p5=data[data.Pollutants=='SO2']
+data_p5[['Max','Avg','Min']].plot()
+plt.xlabel('cities')
+plt.ylabel('amount')
+plt.title('SO2')
+Text(0.5, 1.0, 'SO2')
+
+data_p6=data[data.Pollutants=='CO']
+data_p6[['Max','Avg','Min']].plot()
+plt.xlabel('cities')
+plt.ylabel('amount')
+plt.title('CO')
+Text(0.5, 1.0, 'CO')
+
+data_p7=data[data.Pollutants=='OZONE']
+data_p7[['Max','Avg','Min']].plot()
+plt.xlabel('cities')
+plt.ylabel('amount')
+plt.title('OZONE')
+Text(0.5, 1.0, 'OZONE')
+
+Plotting Min,Max And Avg (State wise)
+from pandas import DataFrame
+df =DataFrame(data.State)
+DataFrame.drop_duplicates(df)
+State
+0	Andhra_Pradesh
+33	Bihar
+47	Delhi
+286	Gujarat
+291	Haryana
+322	Jharkhand
+327	Karnataka
+393	Kerala
+400	Madhya Pradesh
+439	Maharashtra
+498	Odisha
+511	Punjab
+560	Rajasthan
+629	TamilNadu
+644	Telangana
+684	Uttar_Pradesh
+774	West_Bengal
+data_state1=data[data.State=='Andhra_Pradesh']
+data_state1[['Min','Avg','Max']].plot()
+plt.xlabel('cities')
+plt.ylabel('Amount')
+plt.title('Andhra_Pradesh')
+Text(0.5, 1.0, 'Andhra_Pradesh')
+
+data_state2=data[data.State=='Bihar']
+data_state2[['Min','Avg','Max']].plot()
+plt.xlabel('cities')
+plt.ylabel('Amount')
+plt.title('Bihar')
+Text(0.5, 1.0, 'Bihar')
+
+data_state3=data[data.State=='Delhi']
+data_state3[['Min','Avg','Max']].plot()
+plt.xlabel('cities')
+plt.ylabel('Amount')
+plt.title('Delhi')
+Text(0.5, 1.0, 'Delhi')
+
+data_state4=data[data.State=='Gujarat']
+data_state4[['Min','Avg','Max']].plot()
+plt.xlabel('cities')
+plt.ylabel('Amount')
+plt.title('Gujarat')
+Text(0.5, 1.0, 'Gujarat')
+
+data_state5=data[data.State=='Haryana']
+data_state5[['Min','Avg','Max']].plot()
+plt.xlabel('cities')
+plt.ylabel('Amount')
+plt.title('Haryana')
+Text(0.5, 1.0, 'Haryana')
+
+data_state6=data[data.State=='Jharkhand']
+data_state6[['Min','Avg','Max']].plot()
+plt.xlabel('cities')
+plt.ylabel('Amount')
+plt.title('Jharkhand')
+Text(0.5, 1.0, 'Jharkhand')
+
+data_state7=data[data.State=='Karnataka']
+data_state7[['Min','Avg','Max']].plot()
+plt.xlabel('cities')
+plt.ylabel('Amount')
+plt.title('Karnataka')
+Text(0.5, 1.0, 'Karnataka')
+
+data_state8=data[data.State=='Kerala']
+data_state8[['Min','Avg','Max']].plot()
+plt.xlabel('cities')
+plt.ylabel('Amount')
+plt.title('Kerala')
+Text(0.5, 1.0, 'Kerala')
+
+data_state9=data[data.State=='Madhya Pradesh']
+data_state9[['Min','Avg','Max']].plot()
+plt.xlabel('cities')
+plt.ylabel('Amount')
+plt.title('Madhya Pradesh')
+Text(0.5, 1.0, 'Madhya Pradesh')
+
+data_state10=data[data.State=='Maharashtra']
+data_state10[['Min','Avg','Max']].plot()
+plt.xlabel('cities')
+plt.ylabel('Amount')
+plt.title('Maharashtra')
+Text(0.5, 1.0, 'Maharashtra')
+
+data_state11=data[data.State=='Odisha']
+data_state11[['Min','Avg','Max']].plot()
+plt.xlabel('cities')
+plt.ylabel('Amount')
+plt.title('Odisha')
+Text(0.5, 1.0, 'Odisha')
+
+data_state12=data[data.State=='Punjab']
+data_state12[['Min','Avg','Max']].plot()
+plt.xlabel('cities')
+plt.ylabel('Amount')
+plt.title('Punjab')
+Text(0.5, 1.0, 'Punjab')
+
+data_state13=data[data.State=='Rajasthan']
+data_state13[['Min','Avg','Max']].plot()
+plt.xlabel('cities')
+plt.ylabel('Amount')
+plt.title('Rajasthan')
+Text(0.5, 1.0, 'Rajasthan')
+
+data_state14=data[data.State=='TamilNadu']
+data_state14[['Min','Avg','Max']].plot()
+plt.xlabel('cities')
+plt.ylabel('Amount')
+plt.title('TamilNadu')
+Text(0.5, 1.0, 'TamilNadu')
+
+data_state15=data[data.State=='Telangana']
+data_state15[['Min','Avg','Max']].plot()
+plt.xlabel('cities')
+plt.ylabel('Amount')
+plt.title('Telangana')
+Text(0.5, 1.0, 'Telangana')
+
+data_state16=data[data.State=='Uttar_Pradesh']
+data_state16[['Min','Avg','Max']].plot()
+plt.xlabel('cities')
+plt.ylabel('Amount')
+plt.title('Utter_Pradesh')
+Text(0.5, 1.0, 'Utter_Pradesh')
+
+data_state17=data[data.State=='West_Bengal']
+data_state17[['Min','Avg','Max']].plot()
+plt.xlabel('cities')
+plt.ylabel('Amount')
+plt.title('West_Bengal')
+Text(0.5, 1.0, 'West_Bengal')
+
+Plotting Mean Pollutant Amount
+data_pollu=data.groupby('Pollutants')
+data_pollu.mean()
+plt.figure(figsize=(20,10) , dpi=100)
+plt.plot(data_pollu.mean())
+plt.legend(['Max','Avg','Mean'])
+plt.xlabel('Amount')
+plt.ylabel('Pollutant')
+plt.title('Pollutant Amounts')
+Text(0.5, 1.0, 'Pollutant Amounts')
+
+Conclusion
+PM2.5 is Most Spreaded in Air
+Plotting Mean State Pollution
+data_states=data.groupby('State')
+data_states.mean()
+Avg	Max	Min
+State			
+Andhra_Pradesh	41.321429	64.285714	23.928571
+Bihar	121.357143	165.142857	74.071429
+Delhi	139.072961	195.892704	80.339056
+Gujarat	106.500000	173.250000	47.500000
+Haryana	80.653846	143.076923	31.576923
+Jharkhand	84.000000	136.200000	42.200000
+Karnataka	51.295082	84.606557	23.803279
+Kerala	67.000000	97.857143	44.000000
+Madhya Pradesh	78.589744	142.974359	31.846154
+Maharashtra	62.981132	121.735849	26.528302
+Odisha	54.727273	113.090909	26.181818
+Punjab	55.938776	89.102041	32.795918
+Rajasthan	80.647059	153.220588	28.352941
+TamilNadu	36.333333	79.666667	15.200000
+Telangana	48.457143	85.228571	23.057143
+Uttar_Pradesh	135.633333	194.166667	75.733333
+West_Bengal	94.980000	150.780000	46.880000
+plt.figure(figsize=(18,5) , dpi=100)
+plt.plot(data_states.mean())
+plt.legend(['Max','Avg','Min'])
+plt.xlabel('States')
+plt.ylabel('Amount')
+plt.tight_layout()
+
+Conclusion
+Delhi And UP are Most Polluted
+Plotting mean City Pollution
+data_city=data.groupby('city')
+data_city.mean()
+Avg	Max	Min
+city			
+Agra	105.400000	157.400000	58.800000
+Ahmedabad	106.500000	173.250000	47.500000
+Ajmer	67.428571	141.428571	25.714286
+Alwar	62.571429	114.857143	16.714286
+Amaravati	48.285714	82.857143	23.857143
+Amritsar	51.600000	82.400000	33.200000
+Asanol	91.142857	150.285714	46.142857
+Aurangabad	47.142857	91.000000	16.571429
+Baghpat	139.000000	187.285714	78.428571
+Bathinda	49.000000	80.600000	25.200000
+Bengaluru	56.382979	89.510638	25.191489
+Bhiwadi	131.428571	190.571429	51.142857
+Brajrajnagar	68.000000	153.714286	28.142857
+Bulandshahr	177.714286	217.857143	83.000000
+Chandrapur	41.285714	83.428571	22.428571
+Chennai	36.333333	79.666667	15.200000
+Chikkaballapur	32.000000	53.142857	23.285714
+Delhi	139.072961	195.892704	80.339056
+Dewas	54.428571	89.428571	25.428571
+Durgapur	86.000000	124.666667	44.333333
+Faridabad	127.000000	178.800000	61.600000
+Gaya	95.000000	137.200000	54.800000
+Ghaziabad	153.000000	206.142857	100.571429
+Greater_Noida	155.000000	215.000000	75.000000
+Gurugram	88.800000	156.200000	36.200000
+Haldia	48.400000	71.600000	29.200000
+Howrah	113.285714	180.000000	52.571429
+Hubballi	36.428571	83.142857	15.000000
+Hyderabad	48.457143	85.228571	23.057143
+Jaipur	84.050000	160.550000	24.850000
+...	...	...	...
+Manesar	80.142857	169.285714	26.714286
+Moradabad	138.857143	219.571429	35.714286
+Mumbai	74.833333	130.500000	38.833333
+Muzaffarnagar	119.285714	173.142857	79.428571
+Muzaffarpur	124.600000	181.800000	67.200000
+Nagpur	63.714286	142.285714	23.000000
+Nashik	57.857143	92.571429	15.285714
+Noida	161.583333	220.250000	96.166667
+Pali	52.571429	118.142857	24.142857
+Panchkula	50.600000	97.000000	18.000000
+Patiala	61.142857	92.714286	40.285714
+Patna	150.250000	179.250000	106.750000
+Pithampur	53.714286	100.428571	27.714286
+Pune	86.000000	142.000000	42.333333
+Rajamahendravaram	69.000000	116.500000	26.500000
+Rohtak	51.000000	93.750000	13.750000
+Rupnagar	66.400000	132.000000	30.800000
+Satna	79.250000	178.500000	44.750000
+Siliguri	56.142857	101.571429	18.285714
+Singrauli	121.714286	191.714286	43.571429
+Solapur	78.333333	184.333333	32.500000
+Talcher	31.500000	42.000000	22.750000
+Thane	61.857143	120.857143	26.142857
+Thiruvananthapuram	67.000000	97.857143	44.000000
+Tirupati	33.571429	48.857143	20.714286
+Udaipur	72.285714	163.285714	28.428571
+Ujjain	84.142857	169.714286	23.428571
+Varanasi	157.333333	257.333333	97.333333
+Vijayawada	30.500000	44.833333	23.666667
+Visakhapatnam	43.833333	62.666667	27.166667
+71 rows × 3 columns
+
+plt.figure(figsize=(150,50) , dpi=100)
+plt.plot(data_city.mean())
+plt.xlabel('City')
+plt.ylabel('Amount')
+plt.show()
+
+Geospatial plotting
