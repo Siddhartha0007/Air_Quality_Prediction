@@ -725,7 +725,6 @@ def main():
             colorscale = [[0, '#4d004c'],[.5, '#f2e5ff'],[1, '#ffffff']]
             font_colors=[[0,'#ffffff'], [.5,'#000000'], [1,'#000000']]
             fig =  ff.create_table(df_sample,colorscale=colorscale,index=True,font_colors=['#ffffff', '#000000','#000000'])
-            fig.show()
             return fig
         p12=plot12()
         st.write("Data Table")
