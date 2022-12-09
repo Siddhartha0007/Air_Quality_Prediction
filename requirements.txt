@@ -19,7 +19,6 @@ xgboost==1.6.1
 protobuf~=3.19.0
 scikit_image==0.19.2
 docx2txt
-PIL
 collections
 docx2txt==0.8
 Pillow
