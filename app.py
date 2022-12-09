@@ -15,7 +15,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import docx2txt
 from PIL import Image 
 import numpy as np
 import warnings
@@ -23,17 +22,13 @@ from sklearn.exceptions import DataConversionWarning
 warnings.filterwarnings(action='ignore', category=DataConversionWarning)
 import seaborn as sns
 warnings.filterwarnings('ignore')
-from collections import  Counter
-import inflect
 from bs4 import BeautifulSoup
 import streamlit.components.v1 as components
-import os
 #for model-building
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 import xgboost as xgb
-import string
 from tqdm import tqdm
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
@@ -43,38 +38,25 @@ from sklearn.metrics import plot_confusion_matrix
 from sklearn.metrics import classification_report, f1_score, accuracy_score, confusion_matrix, mean_absolute_error, mean_squared_error
 from sklearn import preprocessing, decomposition, model_selection
 from sklearn.model_selection import cross_val_score
-from numpy import mean
-from numpy import absolute
-from numpy import sqrt
 #for visualization
 import cufflinks as cf
-import matplotlib
 import matplotlib.pyplot as plt
-cf.go_offline()
-cf.set_config_file(offline=False, world_readable=True)
 from plotly.offline import init_notebook_mode, iplot
 init_notebook_mode(connected=True)
 import plotly.graph_objs as go
 import plotly.offline as offline
-offline.init_notebook_mode()
 from plotly import tools
 import plotly.tools as tls
 init_notebook_mode(connected=True)
 import plotly.express as px
 import plotly.graph_objects as go
-import pyLDAvis
-import pyLDAvis.gensim_models as gensimvis
-import pyLDAvis.gensim_models
 ##pyLDAvis.enable_notebook()
 import plotly.express as px
 #for modelimplementation
 import pickle
-from joblib import dump, load
-import joblib
 # Utils
 import time
 timestr = time.strftime("%Y%m%d-%H%M%S")
-import sys
 from sklearn.metrics import r2_score,accuracy_score,mean_absolute_error,mean_squared_error,mean_absolute_percentage_error 
 from sklearn.ensemble import ExtraTreesRegressor,RandomForestRegressor,AdaBoostRegressor,GradientBoostingRegressor
 from sklearn.tree import DecisionTreeRegressor
